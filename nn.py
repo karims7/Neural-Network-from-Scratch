@@ -69,3 +69,27 @@ def update_params(W1, b1, W2, b2, dW1, db1, DW2, db2, alpha):
     b2 = b2 - alpha * db2
 
     return W1, b1, W2, b2
+
+def accuracy(predictions, label):
+    print(predictions, label)
+    return np.sum(predictions == label) / label.size
+
+def prediction(A2):
+    return np.argmax(A2, 0)
+
+def gradient_descent(pixels, label, iterations, alpha):
+    W1, b1, W2, b2 = init_params()
+    for i in range(iterations):
+        Z1, A1, Z2, A2, = forward_prop(W1, b1, W2, b2, pixels)
+        dW1, db1, dW2, db2 = back_prop(Z1, A1, Z2, A1, W2, pixels, label)
+        W1, b1, W2, b2 = update_params(W1, b1, W2, b2, dW1, db1, dW2, db2, alpha)
+
+        if (i % 10 == 0):
+            print("Iteration: ", i)
+            print("Accuracy:", accuracy(prediction(A2), label))
+
+    return W1, b1, W2, b2
+
+
+
+
