@@ -108,8 +108,7 @@ def test_prediction(index, W1, b1, W2, b2):
     print("Label: ", train_label[index])
 
     current_image = current_image.reshape((28, 28)) * 255
+
+dev_predictions = make_predictions(valid_pixels, W1, b1, W2, b2)
+accuracy(dev_predictions, valid_label)
     
-    
-
-
-
