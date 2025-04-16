@@ -44,7 +44,9 @@ def ReLU(Z):
     return np.maximum(0, Z)
 
 def softmax(Z):
-    return np.exp(Z) / sum(np.exp(Z))
+    Z -= np.max(Z, axis=0)  # Subtract max value for numerical stability
+    A = np.exp(Z) / np.sum(np.exp(Z), axis=0)
+    return A
 
 
 # Turn labels into vectors:
