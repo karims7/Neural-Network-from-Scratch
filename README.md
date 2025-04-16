@@ -1,10 +1,12 @@
 # Neural Network from Scratch (NumPy Only)
 
-In this repo, I implemented a simple neural network from scratch using only Python and NumPy.  
+In this repo, I implemented a simple neural network from scratch using only Python and NumPy for my learning purposes.  
 I implemented it without the use of PyTorch, TensorFlow, or Keras to get a better understanding of the math behind forward and backward propagation.  
 I used the classical example of digit recognition using the MNIST dataset.
 
 Dataset link: [Kaggle Digit Recognizer](https://www.kaggle.com/c/digit-recognizer/data)
+
+### **Achieved an accuracy of 85%**
 
 ---
 
@@ -30,6 +32,29 @@ Label: 6
 Label: 9  
 ![Digit 1](images/Figure_4.png)
 
----
+#### Prediction: [3]
 
-### **Achieved an accuracy of 85%**
+Label: 3  
+![Digit 3](images/Figure_5.png)
+
+#### Prediction: [0]
+
+Label: 0  
+![Digit 0](images/Figure_6.png)
+
+#### Prediction: [4]
+
+Label: 4  
+![Digit 4](images/Figure_7.png)
+
+#### Prediction: [1]
+
+Label: 1  
+![Digit 1](images/Figure_8.png)
+
+#### Prediction: [7]
+
+Label: 7  
+![Digit 1](images/Figure_9.png)
+
+---
