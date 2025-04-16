@@ -93,7 +93,7 @@ def prediction(A2):
 def gradient_descent(pixels, label, iterations, alpha):
     W1, b1, W2, b2 = init_params()
     for i in range(iterations):
-        Z1, A1, Z2, A2, = forward_prop(W1, b1, W2, b2, pixels)
+        Z1, A1, Z2, A2 = forward_prop(W1, b1, W2, b2, pixels)
         dW1, db1, dW2, db2 = back_prop(Z1, A1, Z2, A2, W1, W2, pixels, label)
         W1, b1, W2, b2 = update_params(W1, b1, W2, b2, dW1, db1, dW2, db2, alpha)
 
@@ -103,7 +103,7 @@ def gradient_descent(pixels, label, iterations, alpha):
 
     return W1, b1, W2, b2
 
-W1, b1, W2, b2 = gradient_descent(train_pixels, train_label, 0.10, 500)
+W1, b1, W2, b2 = gradient_descent(train_pixels, train_label, 500, 0.10)
 
 def make_predictions(pixels, W1, b1, W2, b2):
     _,_,_, A2 = forward_prop(W1, b1, W2, b2, pixels)
@@ -117,6 +117,9 @@ def test_prediction(index, W1, b1, W2, b2):
     print("Label: ", train_label[index])
 
     current_image = current_image.reshape((28, 28)) * 255
+    plt.gray()
+    plt.imshow(current_image, interpolation='nearest')
+    plt.show()
 
 dev_predictions = make_predictions(valid_pixels, W1, b1, W2, b2)
 accuracy(dev_predictions, valid_label)
