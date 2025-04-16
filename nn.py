@@ -30,19 +30,24 @@ def init_params():
     return W1, b1, W2, b2
 
 def forward_prop(W1, b1, W2, b2, pixels):
+
     Z1 = W1.dot(pixels) + b1
     A1 = ReLU(Z1)
     Z2 = W2.dot(A1) + b2
     A2 = softmax(Z2)
-    
+
+    return Z1, A1, Z2, A2
+
     
 
 def ReLU(Z): 
     return np.maximum(0, Z)
 
 def softmax(Z):
-    return np.exp(Z) / np.sum(np.exp(Z))
+    return np.exp(Z) / sum(np.exp(Z))
 
+
+# Turn labels into vectors:
 def one_hot(label):
     one_hot_label = np.zeros((label.size, label.max() + 1))
     one_hot_label[np.arange(label.size), label] = 1
@@ -52,8 +57,11 @@ def one_hot(label):
 def ReLU_derivative(Z):
     return Z > 0
 
+# Calculating how much weights and biases of output and hidden layer contributed to the error.
+# Return all error gradients to fix weights and biases:
 def back_prop(Z1, A1, Z2, A2, W1, W2, pixels, label):
 
+    m = label.size
     one_hot_label = one_hot(label)
 
     dZ2 = A2 - one_hot_label
@@ -65,6 +73,7 @@ def back_prop(Z1, A1, Z2, A2, W1, W2, pixels, label):
     
     return dW1, db1, dW2, db2
 
+# Update weights and biases: 
 def update_params(W1, b1, W2, b2, dW1, db1, dW2, db2, alpha):
     W1 = W1 - alpha * dW1
     W2 = W2 - alpha * dW2
@@ -85,7 +94,7 @@ def gradient_descent(pixels, label, iterations, alpha):
     W1, b1, W2, b2 = init_params()
     for i in range(iterations):
         Z1, A1, Z2, A2, = forward_prop(W1, b1, W2, b2, pixels)
-        dW1, db1, dW2, db2 = back_prop(Z1, A1, Z2, A1, W1, W2, pixels, label)
+        dW1, db1, dW2, db2 = back_prop(Z1, A1, Z2, A2, W1, W2, pixels, label)
         W1, b1, W2, b2 = update_params(W1, b1, W2, b2, dW1, db1, dW2, db2, alpha)
 
         if (i % 10 == 0):
@@ -94,7 +103,7 @@ def gradient_descent(pixels, label, iterations, alpha):
 
     return W1, b1, W2, b2
 
-W1, b1, W2, b2 = gradient_descent(train_pixels, train_data, 0.10, 500)
+W1, b1, W2, b2 = gradient_descent(train_pixels, train_label, 0.10, 500)
 
 def make_predictions(pixels, W1, b1, W2, b2):
     _,_,_, A2 = forward_prop(W1, b1, W2, b2, pixels)
@@ -111,4 +120,3 @@ def test_prediction(index, W1, b1, W2, b2):
 
 dev_predictions = make_predictions(valid_pixels, W1, b1, W2, b2)
 accuracy(dev_predictions, valid_label)
-    
