@@ -30,7 +30,7 @@ Label: 6
 #### Prediction: [9]
 
 Label: 9  
-![Digit 1](images/Figure_4.png)
+![Digit 9](images/Figure_4.png)
 
 #### Prediction: [3]
 
@@ -55,6 +55,6 @@ Label: 1
 #### Prediction: [7]
 
 Label: 7  
-![Digit 1](images/Figure_9.png)
+![Digit 7](images/Figure_9.png)
 
 ---
