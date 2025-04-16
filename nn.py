@@ -121,5 +121,16 @@ def test_prediction(index, W1, b1, W2, b2):
     plt.imshow(current_image, interpolation='nearest')
     plt.show()
 
+test_prediction(0, W1, b1, W2, b2)
+test_prediction(1, W1, b1, W2, b2)
+test_prediction(2, W1, b1, W2, b2)
+test_prediction(3, W1, b1, W2, b2)
+test_prediction(4, W1, b1, W2, b2)
+test_prediction(5, W1, b1, W2, b2)
+test_prediction(6, W1, b1, W2, b2)
+test_prediction(7, W1, b1, W2, b2)
+test_prediction(8, W1, b1, W2, b2)
+test_prediction(9, W1, b1, W2, b2)
+
 dev_predictions = make_predictions(valid_pixels, W1, b1, W2, b2)
 accuracy(dev_predictions, valid_label)
