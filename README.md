@@ -6,7 +6,7 @@ I used the classical example of digit recognition using the MNIST dataset.
 
 Dataset link: [Kaggle Digit Recognizer](https://www.kaggle.com/c/digit-recognizer/data)
 
-### **Achieved an accuracy of 85%**
+### **Achieved an accuracy of 86%**
 
 ---
 
